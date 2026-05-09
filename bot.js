@@ -29,7 +29,7 @@ const adminSettings = {};
 const stickerCommands = {};
 const lockedGroups = new Set();
 const userWarns = {};
-let BOT_OWNER = null; // Will be auto-detected from pairing
+let BOT_OWNER = process.env.OWNER_NUMBER || null; // from Railway env
 const sudoUsers = []; // Users who can use the bot like owner
 
 let botMode = "private";
