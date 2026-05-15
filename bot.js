@@ -1582,12 +1582,9 @@ async function startBot() {
     const { connection, lastDisconnect, qr } = update;
 
     if (qr) {
-      console.clear();
-      console.log("   📱 Enter Phone Number 📱    ");
+    
 
-      const phoneNumber = await askQuestion(
-        "Enter your phone number (with country code, e.g., 1234567890): "
-      );
+      const phoneNumber = process.env.OWNER_NUMBER;
       try {
         // Set the pairing phone number as bot owner if not already set
         if (!BOT_OWNER) {
