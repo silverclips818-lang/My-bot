@@ -2561,22 +2561,17 @@ We hope to see you again soon!`;
                               msg.viewOnceMessageV2?.message?.videoMessage?.contextInfo;
           
           // Check for status@broadcast in various places
-          const isStatusMention = 
-            contextInfo?.remoteJid === 'status@broadcast' ||
-            contextInfo?.participant?.endsWith('@s.whatsapp.net') && contextInfo?.remoteJid === 'status@broadcast' ||
-            contextInfo?.mentionedJid?.includes('status@broadcast') ||
-            message.key?.remoteJid?.endsWith('@g.us') && contextInfo?.stanzaId && contextInfo?.remoteJid === 'status@broadcast' ||
-            // Status V3 shares
-            !!msg.statusMentionMessage ||
-            // Extended text with status broadcast context
-            (msg.extendedTextMessage && contextInfo?.remoteJid === 'status@broadcast') ||
-            // Image/video forwarded from status
-            ((msg.imageMessage || msg.videoMessage) && contextInfo?.remoteJid === 'status@broadcast') ||
-            // Ephemeral wrapped status messages
-            (msg.ephemeralMessage?.message?.extendedTextMessage?.contextInfo?.remoteJid === 'status@broadcast') ||
-            (msg.ephemeralMessage?.message?.imageMessage?.contextInfo?.remoteJid === 'status@broadcast') ||
-            (msg.ephemeralMessage?.message?.videoMessage?.contextInfo?.remoteJid === 'status@broadcast');
-          
+          const isStatusMention =
+    contextInfo?.remoteJid === 'status@broadcast' ||
+    msg?.groupStatusMentionMessage ||
+    msg?.statusMentionMessage ||
+    msg?.protocolMessage ||
+    msg?.imageMessage?.contextInfo?.remoteJid === 'status@broadcast' ||
+    msg?.videoMessage?.contextInfo?.remoteJid === 'status@broadcast' ||
+    msg?.extendedTextMessage?.contextInfo?.remoteJid === 'status@broadcast' ||
+    msg?.ephemeralMessage?.message?.extendedTextMessage?.contextInfo?.remoteJid === 'status@broadcast' ||
+    msg?.ephemeralMessage?.message?.imageMessage?.contextInfo?.remoteJid === 'status@broadcast' ||
+    msg?.ephemeralMessage?.message?.videoMessage?.contextInfo?.remoteJid === 'status@broadcast';
           if (isStatusMention) {
             const groupId = message.key.remoteJid;
             const userNumber = sender.split("@")[0];
