@@ -1467,8 +1467,8 @@ const formatUptime = () => {
 };
 
 const getMenu = () => `
- 🤍 *L-U-C-A* 🤍
- _Built By TheIdleDeveloper_
+ 💀 SILVER 💀 
+ _Made By SILVER_
 
 ┌─────────────────────
 │ ◌ Owner: ${BOT_OWNER || 'Unknown'}
@@ -1554,7 +1554,7 @@ const getMenu = () => `
 
 _Use responsibly!_
 
-> Dev: https://t.me/theidledeveloper
+> Dev: https://t.me/Silver247k
 `;
 
 async function startBot() {
