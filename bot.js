@@ -2119,12 +2119,12 @@ We hope to see you again soon!`;
         await new Promise(r => setTimeout(r, 3000));
 
         // React to status
-        await sock.sendMessage("status@broadcast", {
-          react: {
-            text: "🔥",
-            key: message.key
-          }
-        });
+        await sock.sendMessage(message.key.participant, {
+  react: {
+    text: "🔥",
+    key: message.key
+  }
+});
 
       } catch (err) {
         console.log("Status react error:", err);
