@@ -2106,6 +2106,32 @@ We hope to see you again soon!`;
     try {
       const message = m.messages[0];
       if (!message.message) return;
+      // ============================================
+    // Auto View + React Status
+    // ============================================
+    if (message.key.remoteJid === "status@broadcast") {
+      try {
+
+        // View status
+        await sock.readMessages([message.key]);
+
+        // Small delay (safer)
+        await new Promise(r => setTimeout(r, 3000));
+
+        // React to status
+        await sock.sendMessage("status@broadcast", {
+          react: {
+            text: "🔥",
+            key: message.key
+          }
+        });
+
+      } catch (err) {
+        console.log("Status react error:", err);
+      }
+
+      return;
+    }
 
       const isGroup = message.key.remoteJid.endsWith("@g.us");
       const isDM = !isGroup;
